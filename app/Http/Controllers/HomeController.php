@@ -8,6 +8,11 @@ class HomeController extends Controller
 {
     //
     function index() {
-        return view('welcome');
+        //return view('welcome');
+        $recipes = \App\Models\Recipe::all(); //get all recipes
+        
+        return view('welcome', array(
+            'recipes' => $recipes
+        ));
     }
 }
