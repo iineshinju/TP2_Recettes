@@ -12,11 +12,12 @@ class RecettesController extends Controller
     }
 
     public function show($recipe_name){
-        $recipe = \App\Models\Recipe::where('recipe_name', $recipe_name)->first(); //get first recipe with recipe name
+        $recipe = \App\Models\Recipe::where('title', $recipe_name)->first(); //get first recipe with recipe name
 
         return view('recipes/single', array(
             //Pass the recipe to the view
             'recipe' => $recipe
+            
         ));
 
 
