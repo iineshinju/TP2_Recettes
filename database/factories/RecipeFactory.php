@@ -27,7 +27,7 @@ class RecipeFactory extends Factory
             'title' => Str::random(15),
             'content' => Str::random(200),
             'ingredients' => Str::random(50),
-            'url' => $this->faker->url,
+            'url' => $this->faker->url(),
             'tags' => Str::random(15),
             //'date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'status' => Str::random(20),

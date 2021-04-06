@@ -8,7 +8,7 @@
             @endforeach
             -->
             @for($i = count($recipes)-1; $i > count($recipes)-4; $i--)
-                <li> <a href="<?php echo $recipes[$i] -> url ?>">{{ $recipes[$i] -> title}} </a> </li>
+                <li> <a href="<?php echo "/recettes/".$recipes[$i]-> title ?>">{{ $recipes[$i] -> title}} </a> </li>
             @endfor
             </ul>
 @endsection

@@ -23,3 +23,4 @@ use App\Http\Controllers\ContactController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/recettes', [RecettesController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
+Route::get('/recettes/{url}',[RecettesController::class,'show']);
