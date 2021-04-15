@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,8 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/recettes', [RecettesController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
 Route::get('/recettes/{title}',[RecettesController::class,'show']);
+Route::post('/contact', [ContactController::class, 'store']);
+Route::get('/contact/all', [ContactController::class, 'show']);
+
+// Création du formulaire de contact
+// Route::get('/contact', )

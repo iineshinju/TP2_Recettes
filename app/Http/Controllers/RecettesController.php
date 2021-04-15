@@ -17,7 +17,6 @@ class RecettesController extends Controller
         return view('recipes/single', array(
             //Pass the recipe to the view
             'recipe' => $recipe
-            
         ));
 
 
