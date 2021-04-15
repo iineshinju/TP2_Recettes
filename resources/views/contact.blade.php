@@ -9,10 +9,4 @@
                 <input type="submit" value="Envoyer">
             </form>
 
-            <!-- <ul>
-                @foreach ($contacts as $contact)
-                    <li>{{ $contact->name }} a écrit : "{{$contact->message}}". Répondre à {{$contact->email}}</li>
-                @endforeach
-            </ul> -->
-
 @endsection

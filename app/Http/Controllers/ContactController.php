@@ -9,8 +9,11 @@ class ContactController extends Controller
 {
     //
     function index() {
-        $contacts = \App\Models\Contact::all();
-        return view('contact',['contacts'=>$contacts]);
+        return view('contact');
+    }
+
+    function create() {
+        return view('contact');
     }
 
     function store(Request $request) {

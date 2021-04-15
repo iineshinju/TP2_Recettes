@@ -5,7 +5,8 @@
             <p>Voici les demandes de contacts effectuer :</p>
             <ul>
                 @foreach ($contacts as $contact)
-                    <li>{{ $contact->name }} a écrit : "{{$contact->message}}". Répondre à l'adresse : {{$contact->email}} .</li>
+                    <li>{{ $contact->name }} a écrit : "{{$contact->message}}".</li>
+                    <dl>Répondre à l'adresse : {{$contact->email}} .</dl>
                 @endforeach
             </ul>
 

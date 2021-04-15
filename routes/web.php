@@ -23,11 +23,12 @@ use App\Http\Controllers\RecettesController;
 use App\Http\Controllers\ContactController;
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/recettes', [RecettesController::class, 'index']);
+// Route::get('/recettes', [RecettesController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
-Route::get('/recettes/{title}',[RecettesController::class,'show']);
+// Route::get('/recettes/{title}',[RecettesController::class,'show']);
+// Création du formulaire de contact
+Route::get('/contact', [ContactController::class, 'create']);
 Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/contact/all', [ContactController::class, 'show']);
-
-// Création du formulaire de contact
-// Route::get('/contact', )
+// Création du CRUD RecettesController
+Route::resource('recettes', RecettesController::class);
