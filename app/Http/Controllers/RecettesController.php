@@ -81,7 +81,8 @@ class RecettesController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        return view('/recipes/edit', compact('recipe'));
+        // return view('/recipes/edit', compact('recipe'));
+        return view('/recipes/edit', ['recipe' => $recipe]);
     }
 
     /**
@@ -93,7 +94,25 @@ class RecettesController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        //
+        $validated = $request->validate([
+            'author_id' => 'required',
+            'title' => 'required|max:150',
+            'content' => 'required',
+            'ingredients' => 'required',
+            'tags' => 'nullable',
+        ]);
+
+        DB::table('recipes')->update([
+            'author_id' => $validated['author_id'],
+            'title' => $validated['title'],
+            'content' => $validated['content'],
+            'ingredients' => $validated['ingredients'],
+            'url' => "/recettes/".$validated['title'],
+            'tags' => $validated['tags'],
+            'status' => "Mis à jour"
+        ]);
+        
+        return redirect()->action([RecettesController::class, 'show'], ['recette' => $validated['title']]);
     }
 
     /**
@@ -104,6 +123,7 @@ class RecettesController extends Controller
      */
     public function destroy(Recipe $recipe)
     {
-        //
+        $recipe->delete();
+        return redirect()->route('/admin/recipes')->with('sucess', 'Recette supprimé');
     }
 }
