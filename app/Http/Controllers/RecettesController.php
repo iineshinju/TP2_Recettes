@@ -15,7 +15,12 @@ class RecettesController extends Controller
      */
     // Cree une fonction index
     function index() {
-        return view('recettes');
+        // return view('recettes');
+        $recipes = \App\Models\Recipe::all(); //get all recipes
+        
+        return view('recettes', array(
+            'recipes' => $recipes
+        ));
     }
 
     /**
