@@ -20,7 +20,7 @@ class CreateRecipesTable extends Migration
             $table->longText('content');
             $table->longText('ingredients');
             $table->string('url', 200);
-            $table->text('tags')->nullable();
+            $table->text('tags')->nullable()->default(NULL);
             //$table->dateTime('date');
             $table->string('status');
             $table->timestamps();

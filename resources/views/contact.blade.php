@@ -3,9 +3,12 @@
             <h1>Contact</h1>
             <form action="/contact" method="POST">
                 @csrf
-                <input type="text" name="name" value="Votre nom">
-                <input type="email" name="email" value="Votre email">
-                <textarea name="message" rows=5>Votre message</textarea>
+                <p>Votre nom</p>
+                <input type="text" name="name" value="Nom">
+                <p>Votre adresse email</p>
+                <input type="email" name="email" value="Email">
+                <p>Votre message</p>
+                <textarea name="message" rows=5>Message</textarea>
                 <input type="submit" value="Envoyer">
             </form>
 

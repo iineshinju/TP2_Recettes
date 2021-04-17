@@ -24,13 +24,13 @@ class RecipeFactory extends Factory
     {
         return [
             'author_id' => $this->faker->randomDigit,
-            'title' => Str::random(15),
-            'content' => Str::random(200),
-            'ingredients' => Str::random(50),
+            'title' => $this->faker->sentence($nbWords = 10, $variableNbWords = true),
+            'content' => $this->faker->paragraph($nbSentences = 5, $variableNbSentences = true),
+            'ingredients' => $this->faker->paragraph($nbSentences = 1, $variableNbSentences = false),
             'url' => $this->faker->url(),
-            'tags' => Str::random(15),
+            'tags' => $this->faker->sentence($nbWords = 7, $variableNbWords = false),
             //'date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'status' => Str::random(20),
+            'status' => $this->faker->randomElement($array = ["Nouveau", "Mis à jour"]),
         ];
     }
 }

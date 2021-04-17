@@ -31,4 +31,9 @@ Route::get('/contact', [ContactController::class, 'create']);
 Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/contact/all', [ContactController::class, 'show']);
 // Création du CRUD RecettesController
-Route::resource('recettes', RecettesController::class);
+Route::resource('recettes', RecettesController::class)->only([
+    'index', 'show'
+]);
+Route::resource('admin/recettes', RecettesController::class)->except([
+    'index'
+]);
