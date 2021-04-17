@@ -124,6 +124,6 @@ class RecettesController extends Controller
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
-        return redirect()->route('/admin/recipes')->with('sucess', 'Recette supprimé');
+        return redirect()->route('/admin/recipes');
     }
 }
