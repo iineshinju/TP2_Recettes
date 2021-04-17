@@ -34,6 +34,4 @@ Route::get('/contact/all', [ContactController::class, 'show']);
 Route::resource('recettes', RecettesController::class)->only([
     'index', 'show'
 ]);
-Route::resource('admin/recettes', RecettesController::class)->except([
-    'index'
-]);
+Route::resource('admin/recettes', RecettesController::class);
