@@ -11,7 +11,7 @@
                 <input type="text" name="title" value="Titre">
                 <p>Les ingrédients de votre recette</p>
                 <textarea name="ingredients" rows=5>Ingrédient</textarea>
-                <p>Les étapes de la recettes</p>
+                <p>Les étapes de la recette</p>
                 <textarea name="content" rows=5>Recette</textarea>
                 <p>Les tags de la recette</p>
                 <input type="text" name="tags">

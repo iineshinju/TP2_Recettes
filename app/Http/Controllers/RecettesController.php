@@ -62,7 +62,9 @@ class RecettesController extends Controller
             'ingredients' => $validated['ingredients'],
             'url' => "/recettes/".$validated['title'],
             'tags' => $validated['tags'],
-            'status' => "Nouveau"
+            'status' => "Nouveau",
+            'created_at' => timestamp()->useCurrent(),
+            'update_at' => timestamp()->useCurrent()
         ]);
         
         // Redirige vers l'action show de ce controller à la page contenant le titre de la recette
@@ -110,7 +112,6 @@ class RecettesController extends Controller
     {
         // Vérifie qu'après changement les données sont toujours valide
         $validated = $request->validate([
-            'author_id' => 'required',
             'title' => 'required|max:150',
             'content' => 'required',
             'ingredients' => 'required',
@@ -119,13 +120,13 @@ class RecettesController extends Controller
 
         // Mets à jour la table de la recette
         DB::table('recipes')->update([
-            'author_id' => $validated['author_id'],
+            'id' => $recipe->id,
             'title' => $validated['title'],
             'content' => $validated['content'],
             'ingredients' => $validated['ingredients'],
-            'url' => "/recettes/".$validated['title'],
             'tags' => $validated['tags'],
-            'status' => "Mis à jour"
+            'status' => "Mis à jour",
+            'update_at' => timestamp()->useCurrent()
         ]);
         
         // Redirige vers l'action show de ce controller à la page contenant le titre de la recette
@@ -143,6 +144,6 @@ class RecettesController extends Controller
         // Supprime la recette
         $recipe->delete();
         // Renvoie à la route admin recipes
-        return redirect()->route('/admin/recipes');
+        return redirect('/admin/recettes');
     }
 }
