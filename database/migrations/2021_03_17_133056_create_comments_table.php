@@ -13,6 +13,7 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
+        // Création de la table comments
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id');

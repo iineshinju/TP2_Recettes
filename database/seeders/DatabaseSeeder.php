@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          //\App\Models\User::factory(10)->create(); 
+         // Permet la création de 100 recettes
          \App\Models\User::factory(10)->has(\App\Models\Recipe::factory()->count(10))->create();
     }
 }

@@ -22,6 +22,7 @@ class RecipeFactory extends Factory
      */
     public function definition()
     {
+        // Permet la création de fausses données pour les recettes
         return [
             'author_id' => $this->faker->randomDigit,
             'title' => $this->faker->sentence($nbWords = 10, $variableNbWords = true),

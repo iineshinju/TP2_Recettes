@@ -1,7 +1,7 @@
 @extends('layouts/main')
             @section('content')
             <h1>Demande de contact</h1>
-            
+            <!-- Renvoie toutes les demandes de contacts -->
             <p>Voici les demandes de contacts effectuer :</p>
             <ul>
                 @foreach ($contacts as $contact)

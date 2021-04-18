@@ -13,6 +13,7 @@ class CreateRecipesTable extends Migration
      */
     public function up()
     {
+        // Création de la table recipes
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('author_id');
@@ -21,6 +22,7 @@ class CreateRecipesTable extends Migration
             $table->longText('ingredients');
             $table->string('url', 200);
             $table->text('tags')->nullable()->default(NULL);
+            // default NULL permet de ne pas avoir d'erreur quand tag est vide
             //$table->dateTime('date');
             $table->string('status');
             $table->timestamps();

@@ -1,6 +1,7 @@
 @extends('layouts/main')
             @section('content')
             <h1>Contact</h1>
+            <!-- On crée un formulaire en post pour créer des contacts -->
             <form action="/contact" method="POST">
                 @csrf
                 <p>Votre nom</p>

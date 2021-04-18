@@ -3,6 +3,7 @@
             <h1>Recettes</h1>
             <h3>Liste des recettes</h3>
             <ul>
+            <!-- On récupére toutes les recettes -->
             @foreach ( $recipes as $recipe )
                 <li> <a href="<?php echo "/recettes/".$recipe-> title ?>">{{ $recipe -> title}} </a> </li>
             @endforeach

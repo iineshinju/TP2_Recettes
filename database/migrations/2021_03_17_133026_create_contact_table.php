@@ -13,6 +13,7 @@ class CreateContactTable extends Migration
      */
     public function up()
     {
+        // Création de la table contact
         Schema::create('contact', function (Blueprint $table) {
             $table->id();
             $table->string('name');

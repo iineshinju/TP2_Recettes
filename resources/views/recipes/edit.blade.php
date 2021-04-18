@@ -1,6 +1,7 @@
 @extends('layouts/main')
             @section('content')
             <h1>Modifier une nouvelle recette</h1>
+            <!-- On crée un formulaire en post pour modifier les recettes déjà existente -->
             <form action="{{'/admin/recettes/'.$recipe->title.'edit'}}" method="POST">
                 @csrf
                 <!-- @method('PUT') -->
@@ -16,6 +17,7 @@
                 <input type="text" name="tags" value="{{$recipe->tags}}">
                 <input type="submit" value="Modifier">
             </form>
+            <!-- On ajoute un bouton avec la méthode delete pour pouvoir supprimer la recette -->
             <form action="{{'/admin/recettes/'.$recipe->title.'delete'}}" method="POST">
                 @csrf
                 @method('DELETE')

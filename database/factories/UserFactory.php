@@ -22,6 +22,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        // Permet la création de fausses données pour l'utilisateur
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
