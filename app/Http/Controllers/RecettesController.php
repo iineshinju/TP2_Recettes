@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 // CRUD de RecettesController lié au model Recipe
 class RecettesController extends Controller
@@ -63,8 +64,8 @@ class RecettesController extends Controller
             'url' => "/recettes/".$validated['title'],
             'tags' => $validated['tags'],
             'status' => "Nouveau",
-            'created_at' => timestamp()->useCurrent(),
-            'update_at' => timestamp()->useCurrent()
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString()
         ]);
         
         // Redirige vers l'action show de ce controller à la page contenant le titre de la recette
@@ -126,7 +127,7 @@ class RecettesController extends Controller
             'ingredients' => $validated['ingredients'],
             'tags' => $validated['tags'],
             'status' => "Mis à jour",
-            'update_at' => timestamp()->useCurrent()
+            'updated_at' => Carbon::now()->toDateTimeString()
         ]);
         
         // Redirige vers l'action show de ce controller à la page contenant le titre de la recette
