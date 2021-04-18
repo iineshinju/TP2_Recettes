@@ -28,11 +28,8 @@
             </form>
 
             <!-- Optionnel : Affichage des commentaires -->
+            <br> <!-- Saut de ligne -->
             <h5>Voir les anciens commentaires</h5>
-            <!-- <ul>
-                @foreach ($comments as $comment)
-                    <li>{{ $comment->pseudo }} a écrit :".</li>
-                    <dl>{{ $comment->email }} .</dl>
-                @endforeach
-            </ul> -->
+            <br> <!-- Saut de ligne -->
+            
 @endsection
