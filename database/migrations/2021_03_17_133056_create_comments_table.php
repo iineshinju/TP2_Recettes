@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->foreignId('author_id');
             $table->foreignId('recipe_id');
             $table->mediumText('content');
+            // Optionnel : Ajout d'un pseudo dans les commentaires pour avoir le nom
+            $table->string('pseudo');
         });
     }
 
