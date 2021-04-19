@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// Carbon permet d'avoir le current timestamp (vu sur stackoverflow)
 use Carbon\Carbon;
 
 // CRUD de RecettesController lié au model Recipe
@@ -64,6 +65,7 @@ class RecettesController extends Controller
             'url' => "/recettes/".$validated['title'],
             'tags' => $validated['tags'],
             'status' => "Nouveau",
+            // Carbon::now vu sur stackoverflow
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString()
         ]);
@@ -96,10 +98,16 @@ class RecettesController extends Controller
      * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recipe $recipe)
+    // Le paramètre est le titre, car donner dans l'url à la place de id
+    public function edit($title)
     {
+        // Récupére à partir du titre la recette
+        $recipe = \App\Models\Recipe::where('title', $title)->first();
         // Renvoie à la vue pour éditer la recette entrée en paramètre
-        return view('/recipes/edit', compact('recipe'));
+        return view('/recipes/edit', array(
+            //Pass the recipe to the view
+            'recipe' => $recipe
+        ));
     }
 
     /**
@@ -109,8 +117,10 @@ class RecettesController extends Controller
      * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recipe $recipe)
+    public function update(Request $request, $title)
     {
+        $recipe = \App\Models\Recipe::where('title', $title)->first();
+        echo $recipe;
         // Vérifie qu'après changement les données sont toujours valide
         $validated = $request->validate([
             'title' => 'required|max:150',
@@ -120,15 +130,14 @@ class RecettesController extends Controller
         ]);
 
         // Mets à jour la table de la recette
-        DB::table('recipes')->update([
-            'id' => $recipe->id,
-            'title' => $validated['title'],
-            'content' => $validated['content'],
-            'ingredients' => $validated['ingredients'],
-            'tags' => $validated['tags'],
-            'status' => "Mis à jour",
-            'updated_at' => Carbon::now()->toDateTimeString()
-        ]);
+        $recipe->title = $validated['title'];
+        $recipe->content = $validated['content'];
+        $recipe->ingredients = $validated['ingredients'];
+        $recipe->tags = $validated['tags'];
+        $recipe->status = "Mis à jour";
+        $recipe->save();
+        // Carbon::now vu sur stackoverflow
+        $recipe->updated_at = Carbon::now()->toDateTimeString();
         
         // Redirige vers l'action show de ce controller à la page contenant le titre de la recette
         return redirect()->action([RecettesController::class, 'show'], ['recette' => $validated['title']]);
@@ -140,8 +149,10 @@ class RecettesController extends Controller
      * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recipe $recipe)
+    public function destroy($title)
     {
+        //Récupération de la recette
+        $recipe = \App\Models\Recipe::where('title', $title)->first();
         // Supprime la recette
         $recipe->delete();
         // Renvoie à la route admin recipes

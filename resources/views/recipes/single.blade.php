@@ -6,7 +6,7 @@
             <br> <!-- Saut de ligne -->
             <!-- Optionnel : On a ajouté la liste des ingrédients -->
             <h3>Ingrédients</h3>
-            <p>{{ $recipe->content }}</p>
+            <p>{{ $recipe->ingredients }}</p>
             
             <!-- On récupère le contenue de la recette -->
             <h3>Contenue</h3>

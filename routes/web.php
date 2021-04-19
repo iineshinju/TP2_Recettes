@@ -41,3 +41,8 @@ Route::resource('recettes', RecettesController::class)->only([
 ]);
     // On n'ajoute pas de conditions, car on veut toutes les pages. 
 Route::resource('admin/recettes', RecettesController::class);
+
+// Optionnel : Authentification
+Auth::routes();
+
+Route::get('/identification', [App\Http\Controllers\HomeController::class, 'login']);

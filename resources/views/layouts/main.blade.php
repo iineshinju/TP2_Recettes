@@ -20,6 +20,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/recettes">Recettes</a></li>
           <li><a href="/contact">Contact</a></li>
+          <li><a href="/identification">Identification</a></li>
         </ul>
       </div>
     </div>
