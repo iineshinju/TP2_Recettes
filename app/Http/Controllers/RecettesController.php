@@ -54,6 +54,8 @@ class RecettesController extends Controller
             'content' => 'required',
             'ingredients' => 'required',
             'tags' => 'nullable',
+            // Optionnel : ajout de l'image de maximum 5000 avec sometimes
+            'image' => 'sometimes|image|max:5000'
         ]);
 
         // Permet l'ajout des données dans le tableau recipes
@@ -67,9 +69,19 @@ class RecettesController extends Controller
             'status' => "Nouveau",
             // Carbon::now vu sur stackoverflow
             'created_at' => Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon::now()->toDateTimeString()
+            'updated_at' => Carbon::now()->toDateTimeString(),
+            // Optionnel : Ajout de l'image dans la base
+            'image' => NULL,
+            //'image' => $validated['image']->store('recettes', 'public'),
         ]);
-        
+
+        // Optionnel : Ajout de l'image dans la base
+        if (!empty($validated['image'])){
+            DB::table('recipes')->update([
+                'image' => $validated['image']->store('recettes', 'public'),
+            ]);
+        }
+
         // Redirige vers l'action show de ce controller à la page contenant le titre de la recette
         return redirect()->action([RecettesController::class, 'show'], ['recette' => $validated['title']]);
     }
@@ -128,6 +140,8 @@ class RecettesController extends Controller
             'content' => 'required',
             'ingredients' => 'required',
             'tags' => 'nullable',
+            // Optionnel : ajout de l'image de maximum 5000 avec sometimes
+            'image' => 'sometimes|image|max:5000'
         ]);
 
         // Mets à jour la table de la recette
@@ -136,10 +150,15 @@ class RecettesController extends Controller
         $recipe->ingredients = $validated['ingredients'];
         $recipe->tags = $validated['tags'];
         $recipe->status = "Mis à jour";
-        $recipe->save();
+        
         // Carbon::now vu sur stackoverflow
         $recipe->updated_at = Carbon::now()->toDateTimeString();
-        
+        // Optionnel : Ajout de l'image dans la base
+        if (request('image')){
+            $recipe->image = $validated['image']->store('recettes', 'public');
+        }
+
+        $recipe->save();
         // Redirige vers l'action show de ce controller à la page contenant le titre de la recette
         return redirect()->action([RecettesController::class, 'show'], ['recette' => $validated['title']]);
     }
@@ -159,4 +178,5 @@ class RecettesController extends Controller
         // Renvoie à la route admin recipes
         return redirect('/admin/recettes');
     }
+
 }
