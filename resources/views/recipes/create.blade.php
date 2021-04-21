@@ -2,7 +2,8 @@
             @section('content')
             <h1>Ajouter une nouvelle recette</h1>
             <!-- On crée un formulaire en post pour créer de nouvelles recettes -->
-            <form action="/admin/recettes" method="POST">
+            <!-- Optionnel : Ajout de enctype pour l'image  -->
+            <form action="/admin/recettes" method="POST" enctype="multipart/form-data">
                 @csrf
                 <p>Votre identification d'auteur</p>
                 <!-- On a min = 1 et max = 10 car on a que 10 auteurs -->
@@ -15,6 +16,8 @@
                 <textarea name="content" rows=5>Recette</textarea>
                 <p>Les tags de la recette</p>
                 <input type="text" name="tags">
+                <!-- Optionnel : Téléchargement des images -->
+                <input type="file" name="image" id="file_image">
                 <input type="submit" value="Créer">
             </form>
 

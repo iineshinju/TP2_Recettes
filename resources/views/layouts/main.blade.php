@@ -20,6 +20,8 @@
           <li><a href="/">Home</a></li>
           <li><a href="/recettes">Recettes</a></li>
           <li><a href="/contact">Contact</a></li>
+          <!-- Ajout d'un onglet pour aller s'identifier -->
+          <li><a href="/home">Identification</a></li>
         </ul>
       </div>
     </div>

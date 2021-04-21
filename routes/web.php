@@ -23,7 +23,16 @@ use App\Http\Controllers\RecettesController;
 use App\Http\Controllers\ContactController;
 
 // Création de la route page d'accueil index
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index']);
+// Création de la page d'accueil welcome après npm run dev
+Route::get('/', function() {
+    $recipes = \App\Models\Recipe::all(); //get all recipes
+        
+    // Renvoie le tableau des recettes dans la vue welcome
+    return view('welcome', array(
+        'recipes' => $recipes
+    ));
+});
 // Création de la route pour recettes index
 // Route::get('/recettes', [RecettesController::class, 'index']);
 // Création de la pour contact index
@@ -41,3 +50,8 @@ Route::resource('recettes', RecettesController::class)->only([
 ]);
     // On n'ajoute pas de conditions, car on veut toutes les pages. 
 Route::resource('admin/recettes', RecettesController::class);
+
+// Optionnel : Authentification
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
