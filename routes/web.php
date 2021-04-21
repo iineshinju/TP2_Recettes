@@ -59,4 +59,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Optionnel : Gestion des commentaires
-Route::resource('/recettes', CommentairesController::class);
+Route::resource('/recettes/{title}', CommentairesController::class);

@@ -26,7 +26,8 @@
             <h2>Commentaires</h2>
             <br> <!-- Saut de ligne -->
             <h5>Écrire un commentaire</h5>
-            <form action="{{'/admin/recettes/'.$recipe->title}}" method="POST">
+            <form action="{{'/recettes/'.$recipe->title}}" method="POST">
+            @csrf
                 <p>Votre pseudo</p>
                 <input type="text" name="pseudo" value="Pseudo">
                 <p>Votre commentaire</p>

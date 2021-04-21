@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Recipe;
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 
 class CommentairesController extends Controller
 {
@@ -14,6 +17,10 @@ class CommentairesController extends Controller
     public function index()
     {
         return view('recipes/single');
+        // $comments = \App\Models\Comment::all(); //get all comments
+        // return view('recipes/single', array(
+        //     'comments' => $comments
+        // ));
     }
 
     /**
@@ -23,7 +30,7 @@ class CommentairesController extends Controller
      */
     public function create()
     {
-        return view('recipes/single');
+       // return view('recipes/single');
     }
 
     /**
@@ -34,19 +41,25 @@ class CommentairesController extends Controller
      */
     public function store(Request $request)
     {
+        echo $request->url();
+        echo $request;
+
         // Permet de vérifier les données donné en paramètre
         $validated = $request->validate([
             'content' => 'required|max:1000',
             'pseudo' => 'required|max:100'
         ]);
 
-         // Permet l'ajout des données dans le tableau comments
-        DB::table('comments')->insert([
-            'author_id' =>  $comments->author->id, 
-            'recipe_id' => $comments->recipe->id,
-            'content' => $validated['content'],
-            'pseudo' =>$validated['pseudo']
-        ]);
+        // Permet l'ajout des données dans le tableau comments
+        $recipe = \App\Models\Recipe::where('url', $request->url())->first();
+
+        $comments = new Comment();
+        $comments->author_id = $recipe->author_id; 
+        $comments->recipe_id = $recipe->id;
+        $comments->content = $validated['content'];
+        $comments->pseudo = $validated['pseudo'];
+        $comments->save();
+     
     }
 
     /**
@@ -56,11 +69,9 @@ class CommentairesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show()
-    {
-        $comments = \App\Models\Comment::all(); //get all comments
-        return view('recipes/single', array(
-            'comments' => $comments
-        ));
+    {  
+        //$comments = \App\Models\Comment::all(); //get all comments
+        return view('recipes/single');
     }
 
     /**
