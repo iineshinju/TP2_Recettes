@@ -173,8 +173,32 @@ Nous avons changer la vue single.blade.php pour ajouter une image si l'attribut 
 
 ## Gestion des commentaires
 
+Nous avons créé un Controller CRUD avec la commande:
+php artisan make:controller Commentaires —resource
+Pour récupérer author-id et recopie-id, nous avons utilisé la méthode store, en faisant 
+$recipe =\App\Models\Recipe::where(‘url’, $requeste->url())->first();
+$comments = new Comment();
+$comments->author_id = $recipe->author_id;
+$comments->recipe_id = $recipe->id;
+$comments->pseudo = $validated([‘pseudo]);
+$comments->content= $validated([‘content]);
+Cette ligne à priori nous permet de trouver le author-id et le recipe-id correspondants, 
+Mais à la création de notre base de données recipe, l’url ne va pas s’actualiser automatiquement. 
+Du coup, cette ligne est censé de fonctionner ne nous amène pas sur la recette correspondante. 
+Nous ne pouvons pas changer les urls qui sont déjà dans notre de base de données. 
+
 # Commentaires générales
 
 ## Ressentit de l'équipe
+
+### Avis 1
 Nous avons eu beaucoup de difficultés avec ce projet, les erreurs n'avaient pas toujours de solutions sur Google, il fallait bien réfléchir pour voir où pouvait être nos erreurs.
 La prise en main de laravel demande tout de même beaucoup de pratique, car même en suivant le cours, ça n'a pas été facile de tout comprendre et de faire par nous même. Mais malgré plusieurs blocages tout le long du projet, nous avons réussi à rendre quelques choses, malgré des erreurs non résolu.
+
+### Avis 2
+C’est un projet très interessant et enrichissant , je pense que si j’aie une meilleure connaissances de PHP sera mieux pour compléter le projet. J’aurai plus de cours avec vous, car je serai diplômé après, mais après sans la date limite de rendu, je serai plus ZEN et relaxe pour le faire. 
+
+## Probleme Git
+
+Nous avons eu beaucoup de problème de git, nous avons du git l'une après l'autre en récupérant tout le temps le git de l'autre pour pouvoir continuer.
+Et la seule fois où nous ne l'avons pas fait, il y avait des conflits qu'on n'a pas su régler. Mais au final, chacune a pu git son travail au fur et à mesure. 
