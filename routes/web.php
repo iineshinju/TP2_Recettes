@@ -57,6 +57,9 @@ Route::resource('admin/recettes', RecettesController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+<<<<<<< HEAD
 
 // Optionnel : Gestion des commentaires
 Route::resource('/recettes/{title}', CommentairesController::class);
+=======
+>>>>>>> 601c5dd4fdac8e394d2e91411b9cd0b12246a4a6
