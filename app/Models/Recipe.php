@@ -11,6 +11,7 @@ class Recipe extends Model
     use HasFactory;
     // Précision du nom de table de la base données
     protected $table = 'recipes';
+    protected $fillable = ['title'];
 
     /**
      * Get the user that authored the recipe.
