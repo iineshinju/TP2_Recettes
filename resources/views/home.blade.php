@@ -15,6 +15,12 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <!-- Ajout des liens pour les admins -->
+                    <ul>
+                        <li><a href="/admin/recettes">Voir toutes les recettes</a></li>
+                        <li><a href="/admin/recettes/create">Créer une nouvelle recette</a></li>
+                        <li><a href="/contact/all">Voir toutes les demandes de contacts</a></li>
+        </ul>
                 </div>
             </div>
         </div>

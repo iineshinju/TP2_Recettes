@@ -98,11 +98,12 @@ class RecettesController extends Controller
      * @param  \App\Models\Recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    // Le paramètre est le titre, car donner dans l'url à la place de id
+    // Le paramètre est le titre, car donner dans l'url à la place
     public function edit($title)
     {
         // Récupére à partir du titre la recette
         $recipe = \App\Models\Recipe::where('title', $title)->first();
+        // echo $recipe;
         // Renvoie à la vue pour éditer la recette entrée en paramètre
         return view('/recipes/edit', array(
             //Pass the recipe to the view
@@ -151,7 +152,7 @@ class RecettesController extends Controller
      */
     public function destroy($title)
     {
-        //Récupération de la recette
+        //Récupération de la recette à partir du titre
         $recipe = \App\Models\Recipe::where('title', $title)->first();
         // Supprime la recette
         $recipe->delete();

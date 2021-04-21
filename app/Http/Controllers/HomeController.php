@@ -6,16 +6,17 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-     //Création de la page d'accueil
-     function index() {
-        //return view('welcome');
-        $recipes = \App\Models\Recipe::all(); //get all recipes
+    // Création de la page index renvoyant toutes les recettes
+    // function index() {
+    //     //return view('welcome');
+    //     $recipes = \App\Models\Recipe::all(); //get all recipes
         
-        // Renvoie le tableau des recettes dans la vue welcome
-        return view('welcome', array(
-            'recipes' => $recipes
-        ));
-    }
+    //     // Renvoie le tableau des recettes dans la vue welcome
+    //     return view('welcome', array(
+    //         'recipes' => $recipes
+    //     ));
+    // }
+
     /**
      * Create a new controller instance.
      *
@@ -32,8 +33,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function login()
+    // Créer avec npm run dev
+    public function index()
     {
-        return view('login');
+        return view('home');
     }
 }
